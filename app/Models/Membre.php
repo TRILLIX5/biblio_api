@@ -20,7 +20,7 @@ class Membre extends Model
         return $this->emprunts()->whereNull('rendu_le');
     }
 
-    //regle du product backlog: a-t-il au moins un emprunt en cours dont la date de retour est dépassée ?
+    //regle du product backlog(TD): a-t-il au moins un emprunt en cours dont la date de retour est dépassée ?
     public function aUnEmpruntEnRetard(): bool
     {
         return $this->empruntsEnCours()

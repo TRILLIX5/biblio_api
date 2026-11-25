@@ -1,0 +1,560 @@
+{
+  "info": {
+    "_postman_id": "bd282e0d-c494-47dd-a6b9-c3038e55c62a",
+    "name": "BIBLIO_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59284530",
+    "_collection_link": "https://go.postman.co/collection/59284530-bd282e0d-c494-47dd-a6b9-c3038e55c62a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CRUD livres",
+      "item": [
+        {
+          "name": "GET",
+          "item": [
+            {
+              "name": "lister les livres",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/livres",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Filtrer livres dispo",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/livres?disponible=1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ],
+                  "query": [
+                    {
+                      "key": "disponible",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "rechercher",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/livres?q=kane",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "kane"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "paramètre invalide",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/livres?disponible=oui",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ],
+                  "query": [
+                    {
+                      "key": "disponible",
+                      "value": "oui"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "voir un livre précis",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/livres/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "livre dont l'id n'existe pas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/livres/999",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres",
+                    "999"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "PATCH",
+          "item": [
+            {
+              "name": "modifier livre",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{ \"titre\": \"MAMADOU:l'histoire d'un grand homme\" }",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/livres/7",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "POST",
+          "item": [
+            {
+              "name": "creer un livre",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"auteur_id\": 1,\r\n  \"titre\": \"Les Soleils des indépendances\",\r\n  \"isbn\": \"978-0-000-00007-3\",\r\n  \"annee\": 1968,\r\n  \"exemplaires\": 2\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/livres",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Valider POST",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"auteur_id\": 999,\r\n  \"titre\": \"\",\r\n  \"isbn\": \"978-0-000-00007-3\",\r\n  \"exemplaires\": 0\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/livres",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "checking de l'interdit(prohibited)",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"auteur_id\": 1,\r\n  \"titre\": \"Test\",\r\n  \"isbn\": \"978-0-000-00008-0\",\r\n  \"exemplaires\": 2,\r\n  \"disponibles\": 99\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/livres",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "DELETE",
+          "item": [
+            {
+              "name": "supp livre jamais emprunté",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/livres/7",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres",
+                    "7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "supp livre déjà emprunté",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/livres/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "livres",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scénario de validation",
+      "item": [
+        {
+          "name": "01-Filtrer livres dispo Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres?disponible=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres"
+              ],
+              "query": [
+                {
+                  "key": "disponible",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Livre indisponible",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"livre_id\": 5, \"membre_id\": 1 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Membre en retard",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"livre_id\": 2, \"membre_id\": 4 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Emprunt 1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"livre_id\": 2, \"membre_id\": 1 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Emprunt 2",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"livre_id\": 3, \"membre_id\": 1 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Limite atteinte",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{ \"livre_id\": 6, \"membre_id\": 1 }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retour",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/1/retour",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "1",
+                "retour"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Déjà rendu",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emprunts/1/retour",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emprunts",
+                "1",
+                "retour"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "09-livre dont l'id n'existe pas Copy",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/livres/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "livres",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
